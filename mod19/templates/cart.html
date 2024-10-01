@@ -1,0 +1,24 @@
+{% extends 'menu.html' %}
+
+{% block title %} Корзина {% endblock %}
+
+{% block pagename %}
+Корзина
+{% endblock %}
+
+{% block content %}
+    {% if cart_items %}
+        <h2>Ваши товары в корзине:</h2>
+        <ul>
+            {% for item in cart_items %}
+            <li>
+                <strong>{{ item.game.title }}</strong> | Количество: {{ item.quantity }} | Цена: {{ item.price }}
+                <button>Удалить</button>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Извините, ваша корзина пуста.</p>
+    {% endif %}
+    <a href="{% url 'home' %}"><button>Вернуться на главную страницу</button></a>
+{% endblock %}
